@@ -13,7 +13,7 @@ This is the client application for TodoGeo, built with React Native and Expo.
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/josephmusngi21/todogeo.git
+   git clone https://github.com/yourusername/todogeo.git
    cd todogeo/client
    ```
 
@@ -36,10 +36,6 @@ This is the client application for TodoGeo, built with React Native and Expo.
 - `app/`: Contains the main application code.
 - `components/`: Contains reusable components.
 - `assets/`: Contains images and other static assets.
-
-### Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request.
 
 ### License
 

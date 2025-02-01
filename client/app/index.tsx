@@ -1,11 +1,12 @@
 import { Text, View, StyleSheet } from "react-native";
-
 import User from "../components/User/User";
+import ToDo from "../components/ToDo/ToDo";
 
 export default function Index() {
     return (
         <View style={styles.container}>
-            <User/>
+            <User />
+            <ToDo />
             <View style={styles.user}></View>
         </View>
     );

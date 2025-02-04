@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Switch } from "react-native";
+import { View, Text, Switch, Button } from "react-native";
 import Task from "./task";
 import styles from "./ToDoStyles";
 
@@ -13,11 +13,11 @@ export default function ToDo() {
   ];
 
   const [currentTasks, setTasks] = useState([
-    new Task("Task 1", "Description 1", futureDates[0]),
-    new Task("Task 2", "Description 2", futureDates[1]),
-    new Task("Task 3", "Description 3", futureDates[2]),
-    new Task("Task 4", "Description 4", futureDates[3]),
-    new Task("Task 5", "Description 5", futureDates[4]),
+    new Task("Do hw", "Math hw due", futureDates[0]),
+    new Task("Get groceries", "don't waste", futureDates[1]),
+    new Task("Extremely long task that requires a very large amount of explanation in the title because the user does not like using the description box", "for some reason", futureDates[2]),
+    new Task("Order more chalk", "Use frictionlabs", futureDates[3]),
+    new Task("Another task", "arbitrary description that just happens to be extremely  long  because it is a  very hefty and loaded task", futureDates[4]),
   ]);
 
   // Update the tasks every second
@@ -46,16 +46,32 @@ export default function ToDo() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>ToDo</Text>
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Text style={styles.title}>ToDo</Text>
+          <Button style={{ backgroundColor: "#bfbfbf" }} onPress={() => 
+            { //TODO: Implement this in a seperate function, preferably in a seperate Tasks class
+              for (let i = 0; i < currentTasks.length; i++) {
+                if (currentTasks[i].completed) {
+                  currentTasks.splice(i, 1);
+                  i--;
+                }
+              }
+            }
+          } title="Clear completed" />
+
+      </View>
       {currentTasks.map((task, index) => {
         const timeRemaining = task.date - Date.now();
         return (
           <View key={index} style={styles.task}>
-            <Switch
-              value={task.completed}
-              onValueChange={() => toggleTaskCompletion(index)}
-            />
-            <Text style={styles.taskText}>{task.toString()}</Text>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Switch
+                value={task.completed}
+                onValueChange={() => toggleTaskCompletion(index)}
+              />
+              <Text style={styles.title}>{task.getTask()}</Text>
+            </View>
+            <Text style={styles.debug}>{task.toString()}</Text>
             <Text style={[styles.timeRemaining, getTimeRemainingStyle(timeRemaining)]}>
               Time Remaining: {task.getTimeRemainingString()}
             </Text>
